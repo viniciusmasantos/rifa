@@ -3,6 +3,7 @@ defmodule RifaWeb.RaffleControllerTest do
 
   import Rifa.AuthFixtures
   import Rifa.LotteryFixtures
+  import Rifa.Factory
 
   describe "create/2" do
     test "returns ok when valid data", %{conn: conn} do

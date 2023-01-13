@@ -2,6 +2,7 @@ defmodule Rifa.AuthTest do
   use Rifa.DataCase
 
   alias Rifa.Auth
+  import Rifa.Factory
 
   describe "users" do
     alias Rifa.Auth.User
@@ -11,12 +12,12 @@ defmodule Rifa.AuthTest do
     @invalid_attrs %{email: nil, name: nil}
 
     test "list_users/0 returns all users" do
-      user = user_fixture()
+      user = insert(:user)
       assert Auth.list_users() == [user]
     end
 
     test "get_user!/1 returns the user with given id" do
-      user = user_fixture()
+      user = insert(:user)
       assert Auth.get_user!(user.id) == user
     end
 
@@ -33,7 +34,7 @@ defmodule Rifa.AuthTest do
     end
 
     test "update_user/2 with valid data updates the user" do
-      user = user_fixture()
+      user = insert(:user)
       update_attrs = %{email: "some updated email", name: "some updated name"}
 
       assert {:ok, %User{} = user} = Auth.update_user(user, update_attrs)
@@ -42,19 +43,19 @@ defmodule Rifa.AuthTest do
     end
 
     test "update_user/2 with invalid data returns error changeset" do
-      user = user_fixture()
+      user = insert(:user)
       assert {:error, %Ecto.Changeset{}} = Auth.update_user(user, @invalid_attrs)
       assert user == Auth.get_user!(user.id)
     end
 
     test "delete_user/1 deletes the user" do
-      user = user_fixture()
+      user = insert(:user)
       assert {:ok, %User{}} = Auth.delete_user(user)
       assert_raise Ecto.NoResultsError, fn -> Auth.get_user!(user.id) end
     end
 
     test "change_user/1 returns a user changeset" do
-      user = user_fixture()
+      user = insert(:user)
       assert %Ecto.Changeset{} = Auth.change_user(user)
     end
   end

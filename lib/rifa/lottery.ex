@@ -7,6 +7,7 @@ defmodule Rifa.Lottery do
   alias Rifa.Repo
 
   alias Rifa.Lottery.Raffle
+  alias Rifa.Lottery.UsersRaffles
 
   @doc """
   Returns the list of raffles.
@@ -100,5 +101,15 @@ defmodule Rifa.Lottery do
   """
   def change_raffle(%Raffle{} = raffle, attrs \\ %{}) do
     Raffle.changeset(raffle, attrs)
+  end
+
+
+  @doc """
+  Returns a UserRaffle. By passing user_id and raffle_id as map.
+  """
+  def add_user_to_raffle(attrs) do
+    %UsersRaffles{}
+    |> UsersRaffles.changeset(attrs)
+    |> Repo.insert()
   end
 end

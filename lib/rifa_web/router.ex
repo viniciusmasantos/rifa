@@ -7,8 +7,11 @@ defmodule RifaWeb.Router do
 
   scope "/api", RifaWeb do
     pipe_through :api
-  end
 
+    post "/users", UserController, :create
+    #post "/raffles", RaffleController, :create
+    #post "/raffles/subscription", RaffleController, :subscription
+  end
   # Enables LiveDashboard only for development
   #
   # If you want to use the LiveDashboard in production, you should put

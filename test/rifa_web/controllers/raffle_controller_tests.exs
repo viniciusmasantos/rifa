@@ -1,8 +1,8 @@
 defmodule RifaWeb.RaffleControllerTest do
   use RifaWeb.ConnCase
 
-  import Rifa.AuthFixtures
-  import Rifa.LotteryFixtures
+  #import Rifa.AuthFixtures
+  #import Rifa.LotteryFixtures
   import Rifa.Factory
 
   describe "create/2" do
@@ -25,8 +25,8 @@ defmodule RifaWeb.RaffleControllerTest do
 
   describe "subscription/2" do
     test "returns ok when valid data", %{conn: conn} do
-      user = user_fixture()
-      raffle = raffle_fixture()
+      user = insert(:user)
+      raffle = insert(:raffle)
       params = %{user_id: user.id, raffle_id: raffle.id}
 
       conn = post(conn, "/api/raffles/subscription", params)

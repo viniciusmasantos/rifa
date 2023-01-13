@@ -9,12 +9,12 @@ defmodule RifaWeb.RaffleController do
     end
   end
 
-  # def subscription(conn, params) do
-  #   with user <- Rifa.Auth.get_user!(params["user_id"]),
-  #     raffle <- Rifa.Lottery.get_raffle!(params["raffle_id"]),
-  #     {:ok, _s} <- Rifa.Lottery.add_user_to_raffle(%{user_id: user.id, raffle_id: raffle.id}) do
-  #     conn
-  #     |> json("ok")
-  #   end
-  # end
+
+  def show(conn, %{"id" => id}) do
+    with {:ok, _raffle} <- Payfy4.Lottery.get_raffle(id) do
+      json(conn, "unfinished raffle")
+    else
+      _ -> put_status(conn, 400) |> json("")
+    end
+  end
 end

@@ -8,5 +8,7 @@ defmodule Rifa.Repo.Migrations.CreateRaffles do
 
       timestamps()
     end
+
+
   end
 end

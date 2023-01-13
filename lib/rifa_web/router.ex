@@ -10,7 +10,8 @@ defmodule RifaWeb.Router do
 
     post "/users", UserController, :create
     post "/raffles", RaffleController, :create
-    #post "/raffles/subscription", RaffleController, :subscription
+    post "/raffles/subscription", RaffleController, :subscription
+    get "/raffles/:id", RaffleController, :show
   end
   # Enables LiveDashboard only for development
   #

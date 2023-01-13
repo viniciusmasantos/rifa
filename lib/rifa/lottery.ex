@@ -38,6 +38,14 @@ defmodule Rifa.Lottery do
   """
   def get_raffle!(id), do: Repo.get!(Raffle, id)
 
+  def get_raffle(id) do
+    case Repo.get(Raffle, id) do
+      nil -> {:error, :not_found}
+      raffle -> {:ok, raffle}
+    end
+  end
+
+
   @doc """
   Creates a raffle.
 

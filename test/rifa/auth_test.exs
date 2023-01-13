@@ -7,7 +7,7 @@ defmodule Rifa.AuthTest do
   describe "users" do
     alias Rifa.Auth.User
 
-    import Rifa.AuthFixtures
+    #import Rifa.AuthFixtures
 
     @invalid_attrs %{email: nil, name: nil}
 

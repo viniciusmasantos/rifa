@@ -9,7 +9,7 @@ defmodule RifaWeb.Router do
     pipe_through :api
 
     post "/users", UserController, :create
-    #post "/raffles", RaffleController, :create
+    post "/raffles", RaffleController, :create
     #post "/raffles/subscription", RaffleController, :subscription
   end
   # Enables LiveDashboard only for development

@@ -3,7 +3,7 @@ defmodule Rifa.Lottery.Raffle do
   import Ecto.Changeset
 
   schema "raffles" do
-    field :date, :string
+    field :date, :date
     field :name, :string
 
     timestamps()

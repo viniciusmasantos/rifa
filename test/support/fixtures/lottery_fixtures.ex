@@ -11,7 +11,7 @@ defmodule Rifa.LotteryFixtures do
     {:ok, raffle} =
       attrs
       |> Enum.into(%{
-        date: "some date",
+        date: "2000-10-10",
         name: "some name"
       })
       |> Rifa.Lottery.create_raffle()

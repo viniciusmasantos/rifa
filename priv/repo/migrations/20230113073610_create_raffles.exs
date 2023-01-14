@@ -4,7 +4,7 @@ defmodule Rifa.Repo.Migrations.CreateRaffles do
   def change do
     create table(:raffles) do
       add :name, :string
-      add :date, :string
+      add :date, :date
 
       timestamps()
     end

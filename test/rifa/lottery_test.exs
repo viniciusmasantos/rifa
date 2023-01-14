@@ -21,10 +21,10 @@ defmodule Rifa.LotteryTest do
     end
 
     test "create_raffle/1 with valid data creates a raffle" do
-      valid_attrs = %{date: "some date", name: "some name"}
+      valid_attrs = %{date: "2000-10-10", name: "some name"}
 
       assert {:ok, %Raffle{} = raffle} = Lottery.create_raffle(valid_attrs)
-      assert raffle.date == "some date"
+      assert raffle.date ==  ~D[2000-10-10]
       assert raffle.name == "some name"
     end
 
@@ -34,10 +34,10 @@ defmodule Rifa.LotteryTest do
 
     test "update_raffle/2 with valid data updates the raffle" do
       raffle = raffle_fixture()
-      update_attrs = %{date: "some updated date", name: "some updated name"}
+      update_attrs = %{date: "2000-10-10", name: "some updated name"}
 
       assert {:ok, %Raffle{} = raffle} = Lottery.update_raffle(raffle, update_attrs)
-      assert raffle.date == "some updated date"
+      assert raffle.date ==  ~D[2000-10-10]
       assert raffle.name == "some updated name"
     end
 

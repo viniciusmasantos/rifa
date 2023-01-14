@@ -11,8 +11,9 @@ defmodule RifaWeb.RaffleController do
 
 
   def show(conn, %{"id" => id}) do
-    with {:ok, _raffle} <- Payfy4.Lottery.get_raffle(id) do
-      json(conn, "unfinished raffle")
+    with {:ok, raffle} <- Rifa.Lottery.get_raffle(id),
+         resp <- Rifa.Lottery.get_winner(raffle) do
+      json(conn, resp)
     else
       _ -> put_status(conn, 400) |> json("")
     end

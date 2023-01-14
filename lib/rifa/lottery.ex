@@ -120,4 +120,17 @@ defmodule Rifa.Lottery do
     |> UsersRaffles.changeset(attrs)
     |> Repo.insert()
   end
+
+  def get_winner(raffle) do
+    winner =
+      UsersRaffles
+      |> where([ur], ur.raffle_id == ^raffle.id)
+      |> Repo.one()
+
+    case winner do
+      nil -> "unfinished raffle"
+      usersraffles -> %{data: %{id: usersraffles.user_id}}
+    end
+  end
+
 end

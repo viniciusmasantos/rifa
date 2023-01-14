@@ -35,5 +35,35 @@ defmodule RifaWeb.RaffleControllerTest do
     end
   end
 
+  describe "show/2" do
+    test "returns ok when valid data", %{conn: conn} do
+      raffle = insert(:raffle)
+      user = insert(:user)
+      insert(:users_raffles, %{user: user, raffle: raffle})
+      unlucked = insert(:user)
+
+      conn = get(conn, "/api/raffles/#{raffle.id}")
+
+      assert subject = json_response(conn, 200)["data"]
+      assert subject["id"] == user.id
+      # assert subject["name"] == user.name
+      # assert subject["email"] == user.email
+      refute subject["id"] == unlucked.id
+    end
+
+    test "returns msg when raffle unfinished", %{conn: conn} do
+      raffle = insert(:raffle)
+
+      conn = get(conn, "/api/raffles/#{raffle.id}")
+
+      assert json_response(conn, 200) == "unfinished raffle"
+    end
+
+    test "returns error when invalid data", %{conn: conn} do
+      conn = get(conn, "/api/raffles/0")
+
+      assert response(conn, 400)
+    end
+  end
 
 end

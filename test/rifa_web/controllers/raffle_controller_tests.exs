@@ -14,12 +14,6 @@ defmodule RifaWeb.RaffleControllerTest do
       assert subject = json_response(conn, 201)["data"]
       assert subject["name"] == params.name
       assert subject["date"] == params.date
-
-      # json_response(conn, 201) |> Access.get("data") só a segunda parte
-
-      # if json_response(conn, 201) == map, when map["data"] not nil do
-      #   subject = map["data"]
-      # end
     end
   end
 
@@ -46,8 +40,6 @@ defmodule RifaWeb.RaffleControllerTest do
 
       assert subject = json_response(conn, 200)["data"]
       assert subject["id"] == user.id
-      # assert subject["name"] == user.name
-      # assert subject["email"] == user.email
       refute subject["id"] == unlucked.id
     end
 

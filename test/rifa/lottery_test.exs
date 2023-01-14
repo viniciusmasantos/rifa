@@ -2,21 +2,22 @@ defmodule Rifa.LotteryTest do
   use Rifa.DataCase
 
   alias Rifa.Lottery
+  import Rifa.Factory
 
   describe "raffles" do
     alias Rifa.Lottery.Raffle
 
-    import Rifa.LotteryFixtures
+    #import Rifa.LotteryFixtures
 
     @invalid_attrs %{date: nil, name: nil}
 
     test "list_raffles/0 returns all raffles" do
-      raffle = raffle_fixture()
+      raffle = insert(:raffle)
       assert Lottery.list_raffles() == [raffle]
     end
 
     test "get_raffle!/1 returns the raffle with given id" do
-      raffle = raffle_fixture()
+      raffle = insert(:raffle)
       assert Lottery.get_raffle!(raffle.id) == raffle
     end
 
@@ -33,7 +34,7 @@ defmodule Rifa.LotteryTest do
     end
 
     test "update_raffle/2 with valid data updates the raffle" do
-      raffle = raffle_fixture()
+      raffle = insert(:raffle)
       update_attrs = %{date: "2000-10-10", name: "some updated name"}
 
       assert {:ok, %Raffle{} = raffle} = Lottery.update_raffle(raffle, update_attrs)
@@ -42,19 +43,19 @@ defmodule Rifa.LotteryTest do
     end
 
     test "update_raffle/2 with invalid data returns error changeset" do
-      raffle = raffle_fixture()
+      raffle = insert(:raffle)
       assert {:error, %Ecto.Changeset{}} = Lottery.update_raffle(raffle, @invalid_attrs)
       assert raffle == Lottery.get_raffle!(raffle.id)
     end
 
     test "delete_raffle/1 deletes the raffle" do
-      raffle = raffle_fixture()
+      raffle = insert(:raffle)
       assert {:ok, %Raffle{}} = Lottery.delete_raffle(raffle)
       assert_raise Ecto.NoResultsError, fn -> Lottery.get_raffle!(raffle.id) end
     end
 
     test "change_raffle/1 returns a raffle changeset" do
-      raffle = raffle_fixture()
+      raffle = insert(:raffle)
       assert %Ecto.Changeset{} = Lottery.change_raffle(raffle)
     end
   end
